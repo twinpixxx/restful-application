@@ -9,9 +9,14 @@ public class TriangleController {
 
 
     @GetMapping("/triangle")
-    public Triangle greeting(@RequestParam(value = "a") int firstSide
+    public CalculationResults TriangleCalculation(@RequestParam(value = "a") int firstSide
                                 , @RequestParam(value = "b") int secondSide
                                 , @RequestParam(value = "c") int thirdSide) {
-        return new Triangle(firstSide, secondSide, thirdSide);
+        Triangle triangle =  new Triangle(firstSide, secondSide, thirdSide);
+        CalculationResults results = new CalculationResults();
+        CalculationService calculator = new CalculationService(triangle);
+        results.setPerimeter(calculator.getPerimeter());
+        results.setArea(calculator.getArea());
+        return  results;
     }
 }
