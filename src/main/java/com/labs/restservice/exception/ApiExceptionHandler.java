@@ -28,4 +28,13 @@ public class ApiExceptionHandler {
         // Actual exception handling
     }
 
+    @ExceptionHandler({ MethodArgumentTypeMismatchException.class })
+    public ResponseEntity<Object> handleApiRequestArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
+        String errorMessage = String.format("Variables should be type of %s", e.getRequiredType().getName());
+        ApiException apiException = new ApiException(errorMessage,
+                HttpStatus.BAD_REQUEST,
+                LocalDateTime.now());
+        return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
+    }
+
 }
