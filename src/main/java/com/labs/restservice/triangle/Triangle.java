@@ -1,4 +1,4 @@
-package com.example.restservice;
+package com.labs.restservice.triangle;
 
 public class Triangle {
     private int firstSide, secondSide, thirdSide;

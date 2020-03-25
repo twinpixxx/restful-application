@@ -1,5 +1,7 @@
-package com.example.restservice;
+package com.labs.restservice.triangle;
 
+import com.labs.restservice.calculations.CalculationResults;
+import com.labs.restservice.calculations.CalculationService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

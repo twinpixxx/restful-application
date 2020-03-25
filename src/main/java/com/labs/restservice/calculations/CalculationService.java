@@ -1,4 +1,6 @@
-package com.example.restservice;
+package com.labs.restservice.calculations;
+
+import com.labs.restservice.triangle.Triangle;
 
 public class CalculationService {
     private int firstSide, secondSide, thirdSide;

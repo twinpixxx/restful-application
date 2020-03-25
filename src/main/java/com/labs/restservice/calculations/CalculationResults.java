@@ -1,4 +1,4 @@
-package com.example.restservice;
+package com.labs.restservice.calculations;
 
 public class CalculationResults {
     private int perimeter;
