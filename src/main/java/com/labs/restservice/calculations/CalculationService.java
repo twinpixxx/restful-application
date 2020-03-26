@@ -3,7 +3,7 @@ package com.labs.restservice.calculations;
 import com.labs.restservice.triangle.Triangle;
 
 public class CalculationService {
-    private int firstSide, secondSide, thirdSide;
+    private long firstSide, secondSide, thirdSide;
 
     public CalculationService() {};
 
@@ -14,11 +14,16 @@ public class CalculationService {
     }
 
     public double getArea() {
-        final int halfPerimeter = (this.getPerimeter()/2);
+        final long halfPerimeter = (this.getPerimeter()/2);
         return java.lang.Math.sqrt(halfPerimeter*(halfPerimeter-this.firstSide)*(halfPerimeter-this.secondSide)*
                 (halfPerimeter-this.secondSide));
     }
-    public int getPerimeter() {
-        return firstSide + secondSide + thirdSide;
+    public long getPerimeter() {
+        long perimeter = firstSide + secondSide + thirdSide;
+        if (perimeter < Integer.MAX_VALUE) {
+            return perimeter;
+        } else {
+            throw new ArithmeticException("Integer Overflow");
+        }
     }
 }
