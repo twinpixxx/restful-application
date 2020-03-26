@@ -21,11 +21,13 @@ public class ApiExceptionHandler {
         return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(MissingServletRequestParameterException.class)
-    public void handleMissingParams(MissingServletRequestParameterException ex) {
-        String name = ex.getParameterName();
-        System.out.println(name + " parameter is missing");
-        // Actual exception handling
+    @ExceptionHandler({ MissingServletRequestParameterException.class })
+    public ResponseEntity<Object> handleMissingParams(MissingServletRequestParameterException e) {
+        String missingParamName = String.format("Missing the %s param", e.getParameterName());
+        ApiException apiException = new ApiException(missingParamName,
+                HttpStatus.UNPROCESSABLE_ENTITY,
+                LocalDateTime.now());
+        return new ResponseEntity<>(apiException, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler({ MethodArgumentTypeMismatchException.class })
