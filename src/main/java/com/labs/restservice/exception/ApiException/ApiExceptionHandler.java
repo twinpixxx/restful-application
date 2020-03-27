@@ -1,4 +1,4 @@
-package com.labs.restservice.exception;
+package com.labs.restservice.exception.ApiException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

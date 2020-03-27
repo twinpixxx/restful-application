@@ -1,6 +1,6 @@
 package com.labs.restservice.triangle;
 
-import com.labs.restservice.exception.ApiRequestException;
+import com.labs.restservice.exception.ApiException.ApiRequestException;
 
 public class Triangle {
     private long firstSide, secondSide, thirdSide;
