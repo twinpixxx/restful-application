@@ -1,7 +1,7 @@
 package com.labs.restservice.calculations;
 
 public class CalculationResults {
-    private int perimeter;
+    private long perimeter;
     private double area;
 
 
@@ -17,10 +17,10 @@ public class CalculationResults {
         this.area = _area;
     }
 
-    public void setPerimeter(int _perimeter) {
+    public void setPerimeter(long _perimeter) {
         this.perimeter = _perimeter;
     }
 
-    public int getPerimeter() { return this.perimeter; }
+    public long getPerimeter() { return this.perimeter; }
     public double getArea() { return this.area; }
 }

@@ -1,4 +1,4 @@
-package com.labs.restservice.exception;
+package com.labs.restservice.exception.ApiException;
 
 public class ApiRequestException extends RuntimeException {
 
