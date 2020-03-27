@@ -1,5 +1,6 @@
 package com.labs.restservice.calculations;
 
+import com.labs.restservice.exception.InternalException.InternalArithmeticException;
 import com.labs.restservice.triangle.Triangle;
 
 public class CalculationService {
@@ -23,7 +24,7 @@ public class CalculationService {
         if (perimeter < Integer.MAX_VALUE) {
             return perimeter;
         } else {
-            throw new ArithmeticException("Integer Overflow");
+            throw new InternalArithmeticException("Integer Overflow", 500);
         }
     }
 }
