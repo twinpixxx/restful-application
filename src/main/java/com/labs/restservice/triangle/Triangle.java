@@ -10,8 +10,8 @@ public class Triangle {
 
 
     public Triangle(long firstSide, long secondSide, long thirdSide) {
-        if (((firstSide + secondSide) > thirdSide) ||
-                ((firstSide + thirdSide) > secondSide) ||
+        if (((firstSide + secondSide) > thirdSide) &&
+                ((firstSide + thirdSide) > secondSide) &&
                 ((secondSide + thirdSide) > firstSide)) {
             this.firstSide = firstSide;
             this.secondSide = secondSide;
