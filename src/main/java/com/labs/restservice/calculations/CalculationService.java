@@ -4,12 +4,11 @@ import com.labs.restservice.exception.InternalException.InternalArithmeticExcept
 import com.labs.restservice.triangle.Triangle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import static java.lang.Math.sqrt;
 
 public class CalculationService {
     private long firstSide, secondSide, thirdSide;
     private static final Logger log = LoggerFactory.getLogger(CalculationService.class);
-
-    public CalculationService() {};
 
     public CalculationService(Triangle _triangle) {
         this.firstSide = _triangle.getFirstSide();
@@ -18,9 +17,11 @@ public class CalculationService {
     }
 
     public double getArea() {
-        final double halfPerimeter = (this.getPerimeter()/2);
-        final double area = java.lang.Math.sqrt(halfPerimeter*(halfPerimeter-this.firstSide)*(halfPerimeter-this.secondSide)*
-                (halfPerimeter-this.secondSide));
+        final double halfPerimeter = (getPerimeter()/2);
+        final double area = sqrt(halfPerimeter *
+                (halfPerimeter - firstSide) *
+                (halfPerimeter - secondSide) *
+                (halfPerimeter - secondSide));
         log.info(String.format("Getting the area of triangle" +
                                 "Triangle Area = %s", area));
         return area;
