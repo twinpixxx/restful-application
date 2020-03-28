@@ -55,18 +55,18 @@ public class TriangleCalculationTest {
 		assertThat(thrown.getMessage()).isNotBlank();
 	}
 
-//	@Test
-//	public void AreaCalculation() {
-//		Arrays.stream(testData).forEach(v -> {
-//			triangle = new Triangle(v[0], v[1], v[2]);
-//			calculationService = new CalculationService(triangle);
-//			double halfPerimeter = ((v[0] + v[1] +v[2])/2);
-//			double area = sqrt(halfPerimeter *
-//					(halfPerimeter - v[0]) *
-//					(halfPerimeter - v[1]) *
-//					(halfPerimeter - v[2]));
-//			assertEquals(area, calculationService.getArea(), 0.0001);
-//		});
-//	}
+	@Test
+	public void AreaCalculation() {
+		Arrays.stream(testData).forEach(v -> {
+			triangle = new Triangle(v[0], v[1], v[2]);
+			calculationService = new CalculationService(triangle);
+			double halfPerimeter = ((v[0] + v[1] +v[2])/2);
+			double area = sqrt(halfPerimeter *
+					(halfPerimeter - v[0]) *
+					(halfPerimeter - v[1]) *
+					(halfPerimeter - v[2]));
+			assertEquals(area, calculationService.getArea(), 0.0001);
+		});
+	}
 
 }
