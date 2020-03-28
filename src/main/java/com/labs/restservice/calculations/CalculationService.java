@@ -18,7 +18,7 @@ public class CalculationService {
     }
 
     public double getArea() {
-        final long halfPerimeter = (this.getPerimeter()/2);
+        final double halfPerimeter = (this.getPerimeter()/2);
         final double area = java.lang.Math.sqrt(halfPerimeter*(halfPerimeter-this.firstSide)*(halfPerimeter-this.secondSide)*
                 (halfPerimeter-this.secondSide));
         log.info(String.format("Getting the area of triangle" +
