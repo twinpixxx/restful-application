@@ -1,6 +1,6 @@
 [![GitHub version](https://badge.fury.io/gh/twinpixxx%2Fhtmlparser.svg)](https://badge.fury.io/gh/twinpixxx%2Fhtmlparser)
 
-#TriangFul
+##TriangFul
 An Spring Boot RESTful application that calculates area and perimeter of triangle
 
   - Perform Calculations
