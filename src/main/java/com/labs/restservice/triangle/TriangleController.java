@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TriangleController {
+    CalculationService calculator = new CalculationService();
 
     private static final Logger log = LoggerFactory.getLogger(TriangleController.class);
 
@@ -27,9 +28,8 @@ public class TriangleController {
         }
         Triangle triangle =  new Triangle(firstSide, secondSide, thirdSide);
         CalculationResults results = new CalculationResults();
-        CalculationService calculator = new CalculationService(triangle);
-        results.setPerimeter(calculator.getPerimeter());
-        results.setArea(calculator.getArea());
+        results.setPerimeter(calculator.getPerimeter(triangle));
+        results.setArea(calculator.getArea(triangle));
         return  results;
     }
 }

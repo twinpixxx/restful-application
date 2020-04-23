@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TriangleCalculationTest {
 
 	private static final Logger log = LoggerFactory.getLogger(TriangleCalculationTest.class);
-	private CalculationService calculationService;
+	private CalculationService calculationService = new CalculationService();
 	private Triangle triangle;
 	private int[][] testData = new int[][]{{3, 4, 5}, {15, 22, 17}, {158, 287, 357}};
 	private long[][] overflowTestData = new long[][]{{1231241241, 1241235125, 1241215161}};
@@ -43,9 +43,8 @@ public class TriangleCalculationTest {
 		log.info("Perimeter calculation test started");
 		Arrays.stream(testData).forEach(v -> {
 			triangle = new Triangle(v[0], v[1], v[2]);
-			calculationService = new CalculationService(triangle);
 			long perimeter = v[0] + v[1] + v[2];
-			assertEquals(perimeter, calculationService.getPerimeter());
+			assertEquals(perimeter, calculationService.getPerimeter(triangle));
 		});
 		log.info("Perimeter calculation test passed");
 	}
@@ -56,8 +55,7 @@ public class TriangleCalculationTest {
 		Throwable thrown = catchThrowable(() -> {
 			Arrays.stream(overflowTestData).forEach(v -> {
 				triangle = new Triangle(v[0], v[1], v[2]);
-				calculationService = new CalculationService(triangle);
-				long perimeter = calculationService.getPerimeter();
+				long perimeter = calculationService.getPerimeter(triangle);
 			});
 		});
 		assertThat(thrown).isInstanceOf(InternalArithmeticException.class);
@@ -70,13 +68,12 @@ public class TriangleCalculationTest {
 		log.info("Area calculation test started");
 		Arrays.stream(testData).forEach(v -> {
 			triangle = new Triangle(v[0], v[1], v[2]);
-			calculationService = new CalculationService(triangle);
 			double halfPerimeter = ((v[0] + v[1] +v[2])/2);
 			double area = sqrt(halfPerimeter *
 					(halfPerimeter - v[0]) *
 					(halfPerimeter - v[1]) *
 					(halfPerimeter - v[2]));
-			assertEquals(area, calculationService.getArea(), 0.0001);
+			assertEquals(area, calculationService.getArea(triangle));
 		});
 		log.info("Area calculation test passed");
 	}
