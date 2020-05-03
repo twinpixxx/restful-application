@@ -11,19 +11,19 @@ import java.util.HashMap;
 @Service("TriangleCacheService")
 public class TriangleCacheService {
     private static final Logger log = LoggerFactory.getLogger(TriangleCacheService.class);
-    private HashMap<Triangle, CalculationResults> trianlgeCalculationCache = new HashMap<>();
+    private HashMap<Triangle, CalculationResults> triangleCalculationCache = new HashMap<>();
 
     public TriangleCacheService() {}
 
-    public void add (Triangle _params, CalculationResults _results) {
-        trianlgeCalculationCache.put(_params, _results);
+    public void add(Triangle _params, CalculationResults _results) {
+        triangleCalculationCache.put(_params, _results);
     }
 
-    public boolean contains (Triangle _params) {
-        return trianlgeCalculationCache.containsKey(_params);
+    public boolean contains(Triangle _params) {
+        return triangleCalculationCache.containsKey(_params);
     }
 
-    public CalculationResults getResults (Triangle _params) {
-        return trianlgeCalculationCache.get(_params);
+    public CalculationResults getResults(Triangle _params) {
+        return triangleCalculationCache.get(_params);
     }
 }
