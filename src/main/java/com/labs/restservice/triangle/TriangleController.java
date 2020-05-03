@@ -1,5 +1,6 @@
 package com.labs.restservice.triangle;
 
+import com.labs.restservice.cache.TriangleCacheService;
 import com.labs.restservice.calculations.CalculationResults;
 import com.labs.restservice.calculations.CalculationService;
 import com.labs.restservice.exception.ApiException.ApiRequestException;
@@ -10,10 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+
 @RestController
 public class TriangleController {
     @Autowired
     private CalculationService calculator;
+
+    @Autowired
+    private TriangleCacheService cache;
 
     private static final Logger log = LoggerFactory.getLogger(TriangleController.class);
 
@@ -26,12 +32,16 @@ public class TriangleController {
         if ((firstSide <=  0) ||
                 (secondSide <= 0) ||
                 (thirdSide <= 0)) {
-            throw  new ApiRequestException("Triangle side(s) should be positive");
+            throw new ApiRequestException("Triangle side(s) should be positive");
         }
         Triangle triangle =  new Triangle(firstSide, secondSide, thirdSide);
         CalculationResults results = new CalculationResults();
-        results.setPerimeter(calculator.getPerimeter(triangle));
-        results.setArea(calculator.getArea(triangle));
-        return  results;
+        if (cache.contains(triangle)) return cache.getResults(triangle);
+        else {
+            results.setPerimeter(calculator.getPerimeter(triangle));
+            results.setArea(calculator.getArea(triangle));
+            cache.add(triangle, results);
+            return results;
+        }
     }
 }
