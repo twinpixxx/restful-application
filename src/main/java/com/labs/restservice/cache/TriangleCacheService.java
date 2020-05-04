@@ -31,4 +31,18 @@ public class TriangleCacheService {
         log.info("Getting results from cache");
         return triangleCalculationCache.get(_params);
     }
+
+    public int getCacheSize() {
+		log.info("Getting size of cache");
+		return triangleCalculationCache.size();
+	}
+
+	public void clearCache() {
+        log.info("Clearing cache");
+        triangleCalculationCache.clear();
+    }
+
+    public ConcurrentHashMap<Triangle, CalculationResults> getCache() {
+        return triangleCalculationCache;
+    }
 }
