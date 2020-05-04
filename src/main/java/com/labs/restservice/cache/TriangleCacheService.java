@@ -16,14 +16,17 @@ public class TriangleCacheService {
     public TriangleCacheService() {}
 
     public void add(Triangle _params, CalculationResults _results) {
+        log.info("Adding new values to cache");
         triangleCalculationCache.put(_params, _results);
     }
 
     public boolean contains(Triangle _params) {
+        log.info("Check if contains in cache");
         return triangleCalculationCache.containsKey(_params);
     }
 
     public CalculationResults getResults(Triangle _params) {
+        log.info("Getting results from cache");
         return triangleCalculationCache.get(_params);
     }
 }
