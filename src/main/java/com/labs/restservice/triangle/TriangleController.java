@@ -9,8 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 public class TriangleController {
@@ -39,12 +43,20 @@ public class TriangleController {
         accessManager.requestCounter();
         Triangle triangle =  new Triangle(firstSide, secondSide, thirdSide);
         CalculationResults results = new CalculationResults();
-        if (cache.contains(triangle)) return cache.getResults(triangle);
-        else {
-            results.setPerimeter(calculator.getPerimeter(triangle));
-            results.setArea(calculator.getArea(triangle));
-            cache.add(triangle, results);
-            return results;
-        }
+        return cache.getCache().entrySet()
+                .stream()
+                .parallel()
+                .filter(pair -> triangle.equals(pair.getKey()))
+                .map(pair -> {
+                    log.info("Getting info from cache");
+                    return pair.getValue();
+                })
+                .findAny()
+                .orElseGet(() -> {
+                    results.setPerimeter(calculator.getPerimeter(triangle));
+                    results.setArea(calculator.getArea(triangle));
+                    cache.add(triangle, results);
+                    return results;
+                });
     }
 }

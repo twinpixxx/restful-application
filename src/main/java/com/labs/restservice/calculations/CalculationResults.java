@@ -12,6 +12,10 @@ public class CalculationResults {
         this.area = _area;
     }
 
+    public void copyResults(CalculationResults _results) {
+        perimeter = _results.perimeter;
+        area = _results.area;
+    }
 
     public void setArea(double _area) {
         this.area = _area;
