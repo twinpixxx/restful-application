@@ -1,4 +1,4 @@
-package com.labs.restservice.concurrent;
+package com.labs.restservice.concurrency;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
