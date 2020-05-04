@@ -6,14 +6,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service("TriangleCacheService")
 public class TriangleCacheService {
     private static final Logger log = LoggerFactory.getLogger(TriangleCacheService.class);
-    private HashMap<Triangle, CalculationResults> triangleCalculationCache = new HashMap<>();
+    private ConcurrentHashMap<Triangle, CalculationResults> triangleCalculationCache;
 
-    public TriangleCacheService() {}
+    public TriangleCacheService() {
+        triangleCalculationCache = new ConcurrentHashMap<>();
+    }
 
     public void add(Triangle _params, CalculationResults _results) {
         log.info("Adding new values to cache");
