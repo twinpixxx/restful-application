@@ -5,12 +5,12 @@ import com.labs.restservice.triangle.Triangle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
 import static java.lang.Math.sqrt;
 
 @Service("CalculationService")
 public class CalculationService {
     private static final Logger log = LoggerFactory.getLogger(CalculationService.class);
+
 
 
     public CalculationService() {}
