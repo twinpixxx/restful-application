@@ -1,7 +1,7 @@
-package com.labs.restservice.cache;
+package com.epam.triangful.cache;
 
-import com.labs.restservice.calculations.CalculationResults;
-import com.labs.restservice.triangle.Triangle;
+import com.epam.triangful.calculations.CalculationResults;
+import com.epam.triangful.triangle.Triangle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

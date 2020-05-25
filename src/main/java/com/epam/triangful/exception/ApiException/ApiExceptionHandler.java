@@ -1,6 +1,6 @@
-package com.labs.restservice.exception.ApiException;
+package com.epam.triangful.exception.ApiException;
 
-import com.labs.restservice.calculations.CalculationService;
+import com.epam.triangful.calculations.CalculationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

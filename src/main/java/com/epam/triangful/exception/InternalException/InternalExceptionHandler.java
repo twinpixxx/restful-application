@@ -1,5 +1,5 @@
-package com.labs.restservice.exception.InternalException;
-import com.labs.restservice.calculations.CalculationService;
+package com.epam.triangful.exception.InternalException;
+import com.epam.triangful.calculations.CalculationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.labs.restservice.exception.ApiException;
+package com.epam.triangful.exception.ApiException;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpStatus;
