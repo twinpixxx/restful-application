@@ -1,4 +1,4 @@
-package com.labs.restservice.exception.ApiException;
+package com.epam.triangful.exception.ApiException;
 
 public class ApiRequestException extends RuntimeException {
 

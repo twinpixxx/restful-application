@@ -1,4 +1,4 @@
-package com.labs.restservice.exception.InternalException;
+package com.epam.triangful.exception.InternalException;
 
 public class InternalArithmeticException extends ArithmeticException {
 

@@ -1,4 +1,4 @@
-package com.labs.restservice.concurrency;
+package com.epam.triangful.concurrency;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

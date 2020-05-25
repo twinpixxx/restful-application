@@ -1,4 +1,4 @@
-package com.labs.restservice.calculations;
+package com.epam.triangful.calculations;
 
 public class CalculationResults {
     private long perimeter;

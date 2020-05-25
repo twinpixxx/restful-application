@@ -1,4 +1,4 @@
-package com.labs.restservice.exception.InternalException;
+package com.epam.triangful.exception.InternalException;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpStatus;
 import java.time.LocalDateTime;

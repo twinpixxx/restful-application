@@ -1,6 +1,6 @@
-package com.labs.restservice.triangle;
+package com.epam.triangful.triangle;
 
-import com.labs.restservice.exception.ApiException.ApiRequestException;
+import com.epam.triangful.exception.ApiException.ApiRequestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

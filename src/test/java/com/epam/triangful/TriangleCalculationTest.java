@@ -1,9 +1,9 @@
-package com.labs.restservice;
+package com.epam.triangful;
 
-import com.labs.restservice.calculations.CalculationService;
-import com.labs.restservice.exception.ApiException.ApiRequestException;
-import com.labs.restservice.exception.InternalException.InternalArithmeticException;
-import com.labs.restservice.triangle.Triangle;
+import com.epam.triangful.calculations.CalculationService;
+import com.epam.triangful.exception.ApiException.ApiRequestException;
+import com.epam.triangful.exception.InternalException.InternalArithmeticException;
+import com.epam.triangful.triangle.Triangle;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import org.junit.jupiter.api.Test;
