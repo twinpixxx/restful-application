@@ -15,7 +15,7 @@ Triangful uses a number of projects to work properly:
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/) - awesome Java IDE from JetBrains.
 * [Swagger2](https://swagger.io/) - Auto Documentations. 
 * [VueJS](https://vuejs.org/) - The Progressive JavaScript Framework [IN FUTURE]
-* [Three.js](https://threejs.org/) - JavaScript 3D library. [IN FUTURE]
+
 
 
 ### Installation
@@ -49,6 +49,47 @@ Example:
 ```sh
 localhost:8080/triangle?a=3&b=4&c=5
 ```
+
+### POST
+Also, you can perform bulk operations.
+
+Just make request (POST method) with triangles in body (JSON format).
+
+Request example (JSON):
+```sh
+{
+    "triangles": [
+    	{
+    		"firstSide": 3,
+        	"secondSide": 4,
+        	"thirdSide": 5
+    	},
+	    {
+	        "firstSide": 12,
+	        "secondSide": 13,
+	        "thirdSide": 15
+	    }
+	]
+}
+```
+
+Response example (JSON):
+```sh
+{
+    "results": {
+        "resultsList": [
+            {
+                "perimeter": 40,
+                "area": 74.83314773547883
+            },
+            {
+                "perimeter": 12,
+                "area": 6.0
+            }
+        ]
+    }
+}
+```
 ### Documentation
 All documentation available in JSON format:
  ```sh
@@ -61,9 +102,11 @@ localhost:8080/swagger-ui.html
 ### ToDo
 
 - [ ] Controller Error Handling
+- [ ] Database
 - [ ] VueJs Web View
-- [ ] Three.js Triangle Visualisation
-- [ ] Lots of Labs
+- [ ] Async
+- [ ] Tests
+
 
 ## License
 
