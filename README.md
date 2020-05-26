@@ -1,7 +1,7 @@
 [![GitHub version](https://badge.fury.io/gh/twinpixxx%2Fhtmlparser.svg)](https://badge.fury.io/gh/twinpixxx%2Fhtmlparser)
 
-# TriangFul
-An Spring Boot RESTful application that calculates area and perimeter of triangle
+# Triangful
+A Spring Boot RESTful application that calculates area and perimeter of triangle
 
   - Perform Calculations
   - Error Handling
@@ -9,7 +9,7 @@ An Spring Boot RESTful application that calculates area and perimeter of triangl
   
 ### Tech
 
-TriangFul uses a number of projects to work properly:
+Triangful uses a number of projects to work properly:
 
 * [SpringBoot](https://spring.io/projects/spring-boot) - Spring Boot makes it easy to create stand-alone Spring Applications.
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/) - awesome Java IDE from JetBrains.
@@ -20,7 +20,7 @@ TriangFul uses a number of projects to work properly:
 
 ### Installation
 
-TriangFul requires [Java 8+](https://java.com/) to run.
+Triangful requires [Java 8+](https://java.com/) to run.
 
 Install the dependencies and devDependencies and start the server.
 
