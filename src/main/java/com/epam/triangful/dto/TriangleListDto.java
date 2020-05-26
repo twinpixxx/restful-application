@@ -1,12 +1,14 @@
-package com.epam.triangful.triangle;
+package com.epam.triangful.dto;
+
+import com.epam.triangful.triangle.Triangle;
 
 import java.util.ArrayList;
 
-public class TriangleList {
+public class TriangleListDto {
 
     private ArrayList<Triangle> triangles;
 
-    public TriangleList() {
+    public TriangleListDto() {
      triangles = new ArrayList<>();
     }
 

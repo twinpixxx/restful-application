@@ -1,6 +1,6 @@
 package com.epam.triangful.cache;
 
-import com.epam.triangful.calculations.CalculationResults;
+import com.epam.triangful.dto.CalculationResultsDto;
 import com.epam.triangful.triangle.Triangle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,20 +11,20 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service("TriangleCacheService")
 public class TriangleCacheService {
     private static final Logger log = LoggerFactory.getLogger(TriangleCacheService.class);
-    private ConcurrentHashMap<Triangle, CalculationResults> triangleCalculationCache;
+    private ConcurrentHashMap<Triangle, CalculationResultsDto> triangleCalculationCache;
 
     public TriangleCacheService() {
         triangleCalculationCache = new ConcurrentHashMap<>();
     }
 
-    public void add(Triangle _params, CalculationResults _results) {
+    public void add(Triangle _params, CalculationResultsDto _results) {
         log.info("Adding new values to cache");
         triangleCalculationCache.put(_params, _results);
     }
 
     public void add(Triangle _params, double _area, long _perimeter) {
         log.info("Adding new values to cache");
-        CalculationResults results = new CalculationResults();
+        CalculationResultsDto results = new CalculationResultsDto();
         results.setArea(_area);
         results.setPerimeter(_perimeter);
         triangleCalculationCache.put(_params, results);
@@ -35,7 +35,7 @@ public class TriangleCacheService {
         return triangleCalculationCache.containsKey(_params);
     }
 
-    public CalculationResults getResults(Triangle _params) {
+    public CalculationResultsDto getResults(Triangle _params) {
         log.info("Getting results from cache");
         return triangleCalculationCache.get(_params);
     }
@@ -50,7 +50,7 @@ public class TriangleCacheService {
         triangleCalculationCache.clear();
     }
 
-    public ConcurrentHashMap<Triangle, CalculationResults> getCache() {
+    public ConcurrentHashMap<Triangle, CalculationResultsDto> getCache() {
         return triangleCalculationCache;
     }
 }

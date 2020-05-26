@@ -1,17 +1,17 @@
 package com.epam.triangful.dto;
 
 public class TriangleBulkResponseDto {
-    private CalculationResultsList results;
+    private CalculationResultsListDto results;
 
     public TriangleBulkResponseDto() {
-        results = new CalculationResultsList();
+        results = new CalculationResultsListDto();
     }
 
-    public void setResults(CalculationResultsList _resultsList) {
+    public void setResults(CalculationResultsListDto _resultsList) {
         results = _resultsList;
     }
 
-    public CalculationResultsList getResults() {
+    public CalculationResultsListDto getResults() {
         return results;
     }
 }
