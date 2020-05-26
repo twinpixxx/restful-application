@@ -55,4 +55,32 @@ public class TriangleController {
                     return results;
                 });
     }
+
+    @PostMapping("/triangle")
+    public TriangleBulkResponseDto bulkTriangleCalculation(@RequestBody TriangleListDto triangles) {
+        CalculationResultsList resultsList = new CalculationResultsList();
+        CalculationResults results = new CalculationResults();
+        TriangleBulkResponseDto response = new TriangleBulkResponseDto();
+
+        triangles.getTriangles()
+                .stream()
+                .parallel()
+                .forEach(triangle -> {
+                    if (cache.contains(triangle)) {
+                        log.info("Getting info from cache");
+                        resultsList.addFromResults(cache.getResults(triangle));
+                    } else {
+                        log.info("Calculation");
+                        resultsList.add(calculator.getArea(triangle),
+                                calculator.getPerimeter(triangle));
+                        results.setArea(calculator.getArea(triangle));
+                        results.setPerimeter(calculator.getPerimeter(triangle));
+                        log.info("Adding calcs to cache");
+                        cache.add(triangle, calculator.getArea(triangle),
+                                calculator.getPerimeter(triangle));
+                    }
+                });
+        response.setResults(resultsList);
+        return response;
+    }
 }
