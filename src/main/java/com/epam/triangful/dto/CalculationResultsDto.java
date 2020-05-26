@@ -1,18 +1,18 @@
-package com.epam.triangful.calculations;
+package com.epam.triangful.dto;
 
-public class CalculationResults {
+public class CalculationResultsDto {
     private long perimeter;
     private double area;
 
 
-    public CalculationResults() {};
+    public CalculationResultsDto() {};
 
-    public CalculationResults(int _perimeter, double _area) {
+    public CalculationResultsDto(int _perimeter, double _area) {
         this.perimeter = _perimeter;
         this.area = _area;
     }
 
-    public void copyResults(CalculationResults _results) {
+    public void copyResults(CalculationResultsDto _results) {
         perimeter = _results.perimeter;
         area = _results.area;
     }
