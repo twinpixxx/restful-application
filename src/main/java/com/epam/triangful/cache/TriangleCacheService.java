@@ -22,6 +22,14 @@ public class TriangleCacheService {
         triangleCalculationCache.put(_params, _results);
     }
 
+    public void add(Triangle _params, double _area, long _perimeter) {
+        log.info("Adding new values to cache");
+        CalculationResults results = new CalculationResults();
+        results.setArea(_area);
+        results.setPerimeter(_perimeter);
+        triangleCalculationCache.put(_params, results);
+    }
+
     public boolean contains(Triangle _params) {
         log.info("Check if contains in cache");
         return triangleCalculationCache.containsKey(_params);
