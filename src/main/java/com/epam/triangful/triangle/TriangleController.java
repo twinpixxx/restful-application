@@ -1,13 +1,16 @@
 package com.epam.triangful.triangle;
 
-import com.epam.triangful.dto.CalculationResultsDto;
+
 import com.epam.triangful.calculations.CalculationService;
 import com.epam.triangful.concurrency.ServiceAccessManager;
+import com.epam.triangful.dto.statisticsDto;
+import com.epam.triangful.dto.CalculationResultsDto;
 import com.epam.triangful.dto.CalculationResultsListDto;
 import com.epam.triangful.dto.TriangleBulkResponseDto;
 import com.epam.triangful.dto.TriangleListDto;
 import com.epam.triangful.exception.ApiException.ApiRequestException;
 import com.epam.triangful.cache.TriangleCacheService;
+import com.epam.triangful.statistics.statisticsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +71,7 @@ public class TriangleController {
         CalculationResultsListDto resultsList = new CalculationResultsListDto();
         CalculationResultsDto results = new CalculationResultsDto();
         TriangleBulkResponseDto response = new TriangleBulkResponseDto();
+        statisticsService statsService = new statisticsService();
 
         triangles.getTriangles()
                 .stream()
@@ -88,6 +92,8 @@ public class TriangleController {
                     }
                 });
         response.setResults(resultsList);
+        statsService.makeStats(triangles.getTriangles(), resultsList.getResultsList());
+        response.setStats(statsService.getStats());
         return response;
     }
 }
