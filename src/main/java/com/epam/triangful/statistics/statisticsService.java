@@ -2,7 +2,7 @@ package com.epam.triangful.statistics;
 
 import com.epam.triangful.dto.CalculationResultsDto;
 import com.epam.triangful.dto.statisticsDto;
-import com.epam.triangful.triangle.Triangle;
+import com.epam.triangful.dto.TriangleDto;
 
 import java.util.ArrayList;
 
@@ -43,7 +43,7 @@ public class statisticsService {
         stats.setMostPopularPerimeter(mostPopularPerimeter);
     }
 
-    public void calcTotalAmount(ArrayList<Triangle> triangles) {
+    public void calcTotalAmount(ArrayList<TriangleDto> triangles) {
         triangles.stream()
                 .parallel()
                 .forEach(triangle -> {
@@ -120,7 +120,7 @@ public class statisticsService {
         mostPopularPerimeter = countPerimeter > maxCountPerimeter ? results.get(results.size()-1).getPerimeter() : popularPerimeter;
     }
 
-    public void makeStats(ArrayList<Triangle> triangles, ArrayList<CalculationResultsDto> results) {
+    public void makeStats(ArrayList<TriangleDto> triangles, ArrayList<CalculationResultsDto> results) {
         calcTotalAmount(triangles);
         findMaxAndMinArea(results);
         findMaxAndMinPerimeter(results);

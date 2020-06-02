@@ -3,11 +3,7 @@ package com.epam.triangful.triangle;
 
 import com.epam.triangful.calculations.CalculationService;
 import com.epam.triangful.concurrency.ServiceAccessManager;
-import com.epam.triangful.dto.statisticsDto;
-import com.epam.triangful.dto.CalculationResultsDto;
-import com.epam.triangful.dto.CalculationResultsListDto;
-import com.epam.triangful.dto.TriangleBulkResponseDto;
-import com.epam.triangful.dto.TriangleListDto;
+import com.epam.triangful.dto.*;
 import com.epam.triangful.exception.ApiException.ApiRequestException;
 import com.epam.triangful.cache.TriangleCacheService;
 import com.epam.triangful.statistics.statisticsService;
@@ -47,15 +43,15 @@ public class TriangleController {
             throw new ApiRequestException("Triangle side(s) should be positive");
         }
         accessManager.requestCounter();
-        Triangle triangle =  new Triangle(firstSide, secondSide, thirdSide);
+        TriangleDto triangle =  new TriangleDto(firstSide, secondSide, thirdSide);
         CalculationResultsDto results = new CalculationResultsDto();
-        return cache.getCache().entrySet()
+        return cache.getCacheList()
                 .stream()
                 .parallel()
-                .filter(pair -> triangle.equals(pair.getKey()))
-                .map(pair -> {
+                .filter(e -> triangle.equals(e.getTriangle()))
+                .map(e -> {
                     log.info("Getting info from cache");
-                    return pair.getValue();
+                    return e.getResults();
                 })
                 .findAny()
                 .orElseGet(() -> {

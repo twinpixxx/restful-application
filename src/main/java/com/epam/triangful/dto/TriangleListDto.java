@@ -1,21 +1,19 @@
 package com.epam.triangful.dto;
 
-import com.epam.triangful.triangle.Triangle;
-
 import java.util.ArrayList;
 
 public class TriangleListDto {
 
-    private ArrayList<Triangle> triangles;
+    private ArrayList<TriangleDto> triangles;
 
     public TriangleListDto() {
      triangles = new ArrayList<>();
     }
 
-    public ArrayList<Triangle> getTriangles() {
+    public ArrayList<TriangleDto> getTriangles() {
         return triangles;
     }
-    public void addTriangle(Triangle triangle) {
+    public void addTriangle(TriangleDto triangle) {
         this.triangles.add(triangle);
     }
 }

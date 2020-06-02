@@ -1,17 +1,18 @@
-package com.epam.triangful.triangle;
+package com.epam.triangful.dto;
 
 import com.epam.triangful.exception.ApiException.ApiRequestException;
+import com.epam.triangful.triangle.TriangleController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Triangle {
+public class TriangleDto {
     private long firstSide, secondSide, thirdSide;
     private static final Logger log = LoggerFactory.getLogger(TriangleController.class);
 
 
-    public Triangle(long firstSide, long secondSide, long thirdSide) {
+    public TriangleDto(long firstSide, long secondSide, long thirdSide) {
         if (((firstSide + secondSide) > thirdSide) &&
                 ((firstSide + thirdSide) > secondSide) &&
                 ((secondSide + thirdSide) > firstSide)) {
@@ -23,6 +24,9 @@ public class Triangle {
             throw new ApiRequestException("Triangle cannot be created due to wrong side length.");
         }
     }
+
+    public TriangleDto() {}
+
     public long getFirstSide () {
         log.info("Getting the first size of triangle");
         return this.firstSide;
@@ -40,7 +44,7 @@ public class Triangle {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Triangle triangle = (Triangle) o;
+        TriangleDto triangle = (TriangleDto) o;
         return firstSide == triangle.firstSide &&
                 secondSide == triangle.secondSide &&
                 thirdSide == triangle.thirdSide;
