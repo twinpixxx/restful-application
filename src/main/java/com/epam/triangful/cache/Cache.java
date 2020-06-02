@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.UUID;
 
-@Document
+@Document("cache")
 public class Cache {
 
     @Id
