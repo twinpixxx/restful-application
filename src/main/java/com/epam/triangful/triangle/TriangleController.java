@@ -6,6 +6,7 @@ import com.epam.triangful.concurrency.ServiceAccessManager;
 import com.epam.triangful.dto.*;
 import com.epam.triangful.exception.ApiException.ApiRequestException;
 import com.epam.triangful.cache.TriangleCacheService;
+import com.epam.triangful.persistence.BulkService;
 import com.epam.triangful.statistics.statisticsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 
 @RestController
@@ -28,6 +30,9 @@ public class TriangleController {
 
     @Autowired
     private ServiceAccessManager accessManager;
+
+    @Autowired
+    private BulkService bulkStore;
 
     private static final Logger log = LoggerFactory.getLogger(TriangleController.class);
 
@@ -63,33 +68,44 @@ public class TriangleController {
     }
 
     @PostMapping("/triangle")
-    public TriangleBulkResponseDto bulkTriangleCalculation(@RequestBody TriangleListDto triangles) {
+    public String bulkTriangleCalculation(@RequestBody TriangleListDto triangles) {
         CalculationResultsListDto resultsList = new CalculationResultsListDto();
         CalculationResultsDto results = new CalculationResultsDto();
         TriangleBulkResponseDto response = new TriangleBulkResponseDto();
         statisticsService statsService = new statisticsService();
 
-        triangles.getTriangles()
-                .stream()
-                .parallel()
-                .forEach(triangle -> {
-                    if (cache.contains(triangle)) {
-                        log.info("Getting info from cache");
-                        resultsList.addFromResults(cache.getResults(triangle));
-                    } else {
-                        log.info("Calculation");
-                        resultsList.add(calculator.getArea(triangle),
-                                calculator.getPerimeter(triangle));
-                        results.setArea(calculator.getArea(triangle));
-                        results.setPerimeter(calculator.getPerimeter(triangle));
-                        log.info("Adding calcs to cache");
-                        cache.add(triangle, calculator.getArea(triangle),
-                                calculator.getPerimeter(triangle));
-                    }
-                });
-        response.setResults(resultsList);
-        statsService.makeStats(triangles.getTriangles(), resultsList.getResultsList());
-        response.setStats(statsService.getStats());
-        return response;
+        String uuid = UUID.randomUUID().toString();
+        CompletableFuture.runAsync(() -> {
+            triangles.getTriangles()
+                    .stream()
+                    .parallel()
+                    .forEach(triangle -> {
+                        if (cache.contains(triangle)) {
+                            log.info("Getting info from cache");
+                            resultsList.addFromResults(cache.getResults(triangle));
+                        } else {
+                            log.info("Calculation");
+                            resultsList.add(calculator.getArea(triangle),
+                                    calculator.getPerimeter(triangle));
+                            results.setArea(calculator.getArea(triangle));
+                            results.setPerimeter(calculator.getPerimeter(triangle));
+                            log.info("Adding calcs to cache");
+                            cache.add(triangle, calculator.getArea(triangle),
+                                    calculator.getPerimeter(triangle));
+                        }
+                    });
+            response.setResults(resultsList);
+            statsService.makeStats(triangles.getTriangles(), resultsList.getResultsList());
+            response.setStats(statsService.getStats());
+            response.setId(uuid);
+            bulkStore.keep(response);
+        });
+        return uuid;
+    }
+
+    @GetMapping("/triangle/getAll")
+    public TriangleBulkResponseDto gettingBulkResults(@RequestParam(value = "uuid") String uuid) {
+        log.info(String.format("Getting results of bulk operation by %s id", uuid));
+        return bulkStore.getResults(uuid);
     }
 }
