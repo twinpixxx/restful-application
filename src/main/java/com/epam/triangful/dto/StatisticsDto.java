@@ -1,6 +1,6 @@
 package com.epam.triangful.dto;
 
-public class statisticsDto {
+public class StatisticsDto {
     long totalAmount;
     long totalAmountOfIncorrect;
     double maxArea;
@@ -10,7 +10,7 @@ public class statisticsDto {
     double mostPopularArea;
     long mostPopularPerimeter;
 
-    public statisticsDto() {}
+    public StatisticsDto() {}
 
     public long getTotalAmount() {
         return totalAmount;
