@@ -7,7 +7,7 @@ import com.epam.triangful.dto.*;
 import com.epam.triangful.exception.ApiException.ApiRequestException;
 import com.epam.triangful.cache.TriangleCacheService;
 import com.epam.triangful.persistence.BulkService;
-import com.epam.triangful.statistics.statisticsService;
+import com.epam.triangful.statistics.StatisticsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +72,7 @@ public class TriangleController {
         CalculationResultsListDto resultsList = new CalculationResultsListDto();
         CalculationResultsDto results = new CalculationResultsDto();
         TriangleBulkResponseDto response = new TriangleBulkResponseDto();
-        statisticsService statsService = new statisticsService();
+        StatisticsService statsService = new StatisticsService();
 
         String uuid = UUID.randomUUID().toString();
         CompletableFuture.runAsync(() -> {

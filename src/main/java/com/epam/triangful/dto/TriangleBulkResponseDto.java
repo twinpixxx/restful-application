@@ -14,11 +14,11 @@ public class TriangleBulkResponseDto {
     private CalculationResultsListDto results;
 
     @Field("Statistics")
-    private statisticsDto statistics;
+    private StatisticsDto statistics;
 
     public TriangleBulkResponseDto() {
         results = new CalculationResultsListDto();
-        statistics = new statisticsDto();
+        statistics = new StatisticsDto();
     }
 
     public void setResults(CalculationResultsListDto _resultsList) {
@@ -29,11 +29,11 @@ public class TriangleBulkResponseDto {
         return results;
     }
 
-    public statisticsDto getStats() {
+    public StatisticsDto getStats() {
         return statistics;
     }
 
-    public void setStats(statisticsDto stats) {
+    public void setStats(StatisticsDto stats) {
         this.statistics = stats;
     }
 

@@ -1,12 +1,12 @@
 package com.epam.triangful.statistics;
 
 import com.epam.triangful.dto.CalculationResultsDto;
-import com.epam.triangful.dto.statisticsDto;
+import com.epam.triangful.dto.StatisticsDto;
 import com.epam.triangful.dto.TriangleDto;
 
 import java.util.ArrayList;
 
-public class statisticsService {
+public class StatisticsService {
     long totalAmount;
     long totalAmountOfIncorrect;
     double maxArea;
@@ -15,10 +15,10 @@ public class statisticsService {
     long minPerimeter;
     double mostPopularArea;
     long mostPopularPerimeter;
-    statisticsDto stats;
+    StatisticsDto stats;
 
-    public statisticsService() {
-        stats = new statisticsDto();
+    public StatisticsService() {
+        stats = new StatisticsDto();
     }
 
     public void increaseTotalAmount() {
@@ -29,7 +29,7 @@ public class statisticsService {
         return totalAmount;
     }
 
-    public statisticsDto getStats() {
+    public StatisticsDto getStats() {
         return stats;
     }
 
